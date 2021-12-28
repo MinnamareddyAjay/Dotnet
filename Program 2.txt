@@ -1,0 +1,68 @@
+using System;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
+public class Program
+    {
+        public static Boolean validatePassword(string userPassword)
+        {
+            Regex regex = new Regex("^[A-Z][\\S][A-Za-z0-9_@#%!]{8,15}$");
+            return regex.IsMatch(userPassword);
+        }
+
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Password Validation:");
+            Console.WriteLine("Enter Password:");
+            string password = Console.ReadLine();
+
+            if (validatePassword(password))
+            {
+                Console.WriteLine("Valid Password!..");
+            }
+            else
+            {
+                Console.WriteLine("Invalid Password!..");
+            }
+        }
+    }
+
+    class User
+    {
+        private string userName, mailId, password;
+
+        public User()
+        {
+        }
+
+        public User(string userName, string mailId, string password)
+        {
+            this.userName = userName;
+            this.mailId = mailId;
+            this.password = password;
+        }
+
+        public string UserName
+        {
+            set { userName = value; }
+            get { return userName; }
+        }
+        public string MailId
+        {
+            set { mailId = value; }
+            get { return mailId; }
+
+        }
+
+        public string PassWord
+        {
+            set { password = value; }
+            get { return password; }
+        }
+        
+        public override bool Equals(object obj)
+        {
+            User user = (User)obj;
+            return this.UserName.Equals(user.UserName);
+        }
+    }

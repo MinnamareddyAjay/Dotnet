@@ -1,0 +1,83 @@
+using System;
+class User
+    {
+
+        private string userName, mailId, password;
+
+        public User()
+        {
+        }
+
+        public User(string userName, string mailId, string password)
+        {
+            this.userName = userName;
+            this.mailId = mailId;
+            this.password = password;
+        }
+
+        public string UserName
+        {
+            set { userName = value; }
+            get { return userName; }
+        }
+        public string MailId
+        {
+            set { mailId = value; }
+            get { return mailId; }
+
+        }
+
+        public string PassWord
+        {
+            set { password = value; }
+            get { return password; }
+        }
+
+        public override string ToString()
+        {
+            return string.Format("User Name: " + this.UserName + "\nEmail: " + this.MailId + "\nPassword: " + this.PassWord);
+        }
+
+
+        public override bool Equals(object obj)
+        {
+            User user = (User)obj;
+            return this.UserName.Equals(user.UserName);
+        }
+    }
+
+public class Program
+    {
+        static void Main(string[] args)
+        {
+            string userDetails;
+
+            User[] usersDetailsArray = new User[2];
+
+            for (int i = 0; i < usersDetailsArray.Length; i++)
+            {
+                Console.WriteLine("Enter User {0} Details:", i + 1);                
+                userDetails = Console.ReadLine();
+
+                string[] UserStringArray = userDetails.Split(",");
+
+                usersDetailsArray[i] = new User(UserStringArray[0], UserStringArray[2], UserStringArray[1]);
+            }
+
+            for (int i = 0; i < usersDetailsArray.Length; i++)
+            {
+                Console.WriteLine("User {0}: ", i + 1);
+
+                Console.WriteLine(usersDetailsArray[i]);
+            }
+
+            if (usersDetailsArray[0].Equals(usersDetailsArray[1]))
+            {
+                Console.WriteLine("User {0} is same as user {1}", 1, 2);
+            }
+            else
+            {
+                Console.WriteLine("User {0} is different from user {1}", 1, 2);
+            }
+        }
+    }
